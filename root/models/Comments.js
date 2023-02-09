@@ -40,6 +40,7 @@ Comment.init(
   }
 );
 
-
+console.log(`Comment model connection =`)
+console.log(Comment === sequelize.models.Comment)
 
 module.exports = Comment;

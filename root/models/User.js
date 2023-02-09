@@ -47,4 +47,6 @@ User.init(
     modelName: "User",
   }
 );
+console.log(`User model connection =`)
+console.log( User=== sequelize.models.User)
 module.exports = User;

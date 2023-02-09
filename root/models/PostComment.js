@@ -24,5 +24,6 @@ PostComment.init(
 
 
 
-
+console.log(`PostComment model connection =`)
+console.log(PostComment === sequelize.models.PostComment)
 module.exports = PostComment;

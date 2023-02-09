@@ -24,5 +24,6 @@ UserPost.init(
 
 // Define the associations
 
-
+console.log(`UserPost model connection =`)
+console.log(UserPost === sequelize.models.UserPost)
 module.exports = UserPost;

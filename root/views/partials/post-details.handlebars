@@ -1,17 +1,15 @@
- <div class="card offset-1 col-10 mb-4" id="{{this.id}}">
-      <header>
-        <h3>{{title}}</h3>
-      </header>
-
-      <div class="card-body">
-        <p>
-          {{this.content}}
-        </p>
-        <p>By: {{this.user_id}}</p>
-      </div>
-      {{#if loggedIn}}
-      <button type="button">Comment</button>
-      {{else}}
-      <a href="/login"><button type="button" >Login to comment</button></a>
-    </div>
-    {{/if}}
+ <a href="post/{{this.id}}">
+   <div class="card offset-1 col-10 mb-4" id="{{this.id}}">
+        <header>
+          <h3>{{title}}</h3>
+        </header>
+        <div class="card-body">
+          <p>
+            {{this.content}}
+          </p>
+          <p>By: {{this.user_id}}</p>
+        </div>
+   
+        <button  type="button">Comment</button>
+   </div>
+ </a>
