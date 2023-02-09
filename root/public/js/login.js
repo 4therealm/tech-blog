@@ -14,19 +14,22 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to log in.');
+      alert('you suck');
     }
   }
 };
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
+  console.log('clicked')
 
   const username = document.querySelector('#username-signup').value.trim();
+  console.log("🚀 ~ file: login.js:27 ~ signupFormHandler ~ username", username)
   const password = document.querySelector('#password-signup').value.trim();
+  console.log("🚀 ~ file: login.js:28 ~ signupFormHandler ~ password", password)
 
   if (username && password) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/user/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -35,7 +38,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to sign up.');
+      alert('yousuck');
     }
   }
 };
