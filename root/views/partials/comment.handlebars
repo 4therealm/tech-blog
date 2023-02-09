@@ -1,0 +1,15 @@
+ <form class='comment-form'>
+      <label for='comment'>
+        Add Comment:
+      </label>
+      <br />
+      <textarea id='commentContent' name='comment' rows='2' cols='30'>
+      </textarea>
+      <br />
+      <br />
+      <button type='submit' value='Submit'>
+        Submit
+      </button>
+       <input type="hidden" value="{{this.user.id}}" id="userId">
+       <input type="hidden" value="{{this.post.id}}" id="postId">
+    </form>
