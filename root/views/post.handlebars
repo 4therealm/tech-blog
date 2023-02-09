@@ -1,6 +1,8 @@
+{{> navBar}}
 <div class="post">
   <h3>{{post.title}}</h3>
   <p>{{post.content}}</p>
+  <p>{{format_date post.createdAt}}  {{format_time post.createdAt}}</p>
   <h4>Comments:</h4>
   {{#each post.comments}}
     <div class="comment">
