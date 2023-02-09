@@ -1,0 +1,11 @@
+<div class="post">
+  <h3>{{post.title}}</h3>
+  <p>{{post.content}}</p>
+  <h4>Comments:</h4>
+  {{#each post.comments}}
+    <div class="comment">
+      <p>{{comment_text}}</p>
+      <p>{{user.username}}</p>
+    </div>
+  {{/each}}
+</div>
