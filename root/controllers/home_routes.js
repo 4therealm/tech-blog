@@ -25,4 +25,13 @@ const Post = require('../models/Post');
         }
         res.render('login');
       });
+      router.get('/logout', (req, res) => {
+        if (!req.session.loggedIn) {
+          res.redirect('/');
+          return;
+        }
+        res.render('home');
+      });
+
+
     module.exports = router;

@@ -1,6 +1,7 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
-
+const navLogin = document.querySelector('#loginbtn')
+const navLogout = document.querySelector('#logoutbtn')
   const username = document.querySelector('#username-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
@@ -24,9 +25,7 @@ const signupFormHandler = async (event) => {
   console.log('clicked')
 
   const username = document.querySelector('#username-signup').value.trim();
-  console.log("🚀 ~ file: login.js:27 ~ signupFormHandler ~ username", username)
   const password = document.querySelector('#password-signup').value.trim();
-  console.log("🚀 ~ file: login.js:28 ~ signupFormHandler ~ password", password)
 
   if (username && password) {
     const response = await fetch('/api/user/register', {
@@ -42,6 +41,10 @@ const signupFormHandler = async (event) => {
     }
   }
 };
+
+
+
+
 
 document
   .querySelector('.login-form')

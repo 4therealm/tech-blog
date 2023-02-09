@@ -14,12 +14,28 @@
         <li class="nav-item">
           <a class="nav-link" href="/dashboard">Dashboard</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+  {{#if loggedIn}}
+        <li class="nav-item" id="login">
+     <a class="nav-link" id="loginbtn" href="/login">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Logout</a>
+ <li class="nav-item">
+          <a class="nav-link" id="logoutbtn" href="/logout">Logout</a>
         </li>
+        <script>
+          document.getElementById("login").style.display = "none"
+        </script>
+  {{else}}
+       <li class="nav-item" id="login">
+     <a class="nav-link" id="loginbtn" href="/login">Login</a>
+        </li>
+        <li class="nav-item" id="logout">
+          <a class="nav-link" id="logoutbtn" href="/logout">Logout</a>
+        </li>
+       
+   <script>
+          document.getElementById("logout").style.display = "none"
+        </script>
+          {{/if}}
       </ul>
     </div>
   </div>
@@ -66,3 +82,4 @@
       </button>
     </form>
   </div>
+  <script src="./js/logout.js"></script>
