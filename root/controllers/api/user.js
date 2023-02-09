@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
       console.log(dbUserData);
       res
         .status(400)
-        .json({ message: console.error(err)});
+        .json({ message: 'oh dear something happened'});
       return;
     }
     console.log(dbUserData.password);

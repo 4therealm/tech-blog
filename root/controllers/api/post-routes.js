@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const Post = require('../../models/Post');
+const Comments = require('../../models/Comments');
 
 // route to create/add a post using async/await
-router.post('/post', async (req, res) => {
+router.post('/', async (req, res) => {
   try { 
     const newPost = await Post.create({
     title: req.body.post_name,
@@ -14,6 +15,15 @@ router.post('/post', async (req, res) => {
 } catch (err) {
   res.status(400).json(err);
 }
+});
+router.post("post/:id/add-comment", async (req, res) => {
+  const comment = await Comment.create({
+    post_id: req.params.id,
+    user_id: req.user.id,
+    comment_text: req.body.comment
+  });
+
+  res.redirect(`/post/${req.params.id}`);
 });
 
 
