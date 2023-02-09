@@ -1,23 +1,13 @@
-
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const sequelize = require("../config/connection");
 
 class User extends Model {
   checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
+    console.log(` @check password (input) ${loginPw}`);
+    console.log(` @check password (existing) ${this.password}`);
 
-  static associate(models) {
-    this.hasMany(models.Post, {
-      foreignKey: 'user_id',
-      as: 'posts',
-    });
-    this.belongsToMany(models.Post, {
-      through: 'UserPost',
-      as: 'posts',
-      foreignKey: 'user_id',
-    });
+    return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
@@ -37,14 +27,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6],
+        len: [8],
       },
     },
   },
   {
     hooks: {
       async beforeCreate(newUserData) {
+        console.log(` before create hook, unhashed ${newUserData}`);
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        console.log(` before create hook, hashed password ${newUserData}`);
         return newUserData;
       },
     },
@@ -52,7 +44,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'User',
+    modelName: "User",
   }
 );
 module.exports = User;

@@ -1,12 +1,10 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
-const navLogin = document.querySelector('#loginbtn')
-const navLogout = document.querySelector('#logoutbtn')
   const username = document.querySelector('#username-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
   if (username && password) {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/api/user/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -15,18 +13,19 @@ const navLogout = document.querySelector('#logoutbtn')
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('you suck');
+      alert(error);
     }
   }
 };
-
+// -------------------------sign up works fine
 const signupFormHandler = async (event) => {
   event.preventDefault();
   console.log('clicked')
 
   const username = document.querySelector('#username-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
-
+console.log(password)
+console.log(username)
   if (username && password) {
     const response = await fetch('/api/user/register', {
       method: 'POST',
@@ -37,7 +36,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('yousuck');
+      alert('you suck');
     }
   }
 };

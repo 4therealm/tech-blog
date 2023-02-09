@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Post = require('../../models/Post');
 
 // route to create/add a post using async/await
-router.post('/', async (req, res) => {
+router.post('/post', async (req, res) => {
   try { 
     const newPost = await Post.create({
     title: req.body.post_name,
