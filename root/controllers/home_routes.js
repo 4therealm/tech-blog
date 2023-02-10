@@ -48,32 +48,16 @@ router.get("/", async (req, res) => {
 //the postData is reading null,
 router.get("/post/:id", async (req, res) => {
   const userId = req.session.userId;
-  console.log('params id' + req.params.id)
-  const postData = await Post.findAll()
-  
-  //   where: {
-  //     id: req.params.id
-  //   },
-  // }, {
-  //   // include: [
-  //   //   {
-  //   //     model: Comment,
-  //   //     as: "comments",
-  //   //     // where: {
-  //   //     //   post_id: req.params.id,
-  //   //     // },
-  //   //     // include: [
-  //   //     //   {
-  //   //     //     model: User,
-  //   //     //     as: "user",
-  //   //     //   },
-  //   //     // ],
-  //   //   },
-  //   // ],
-  // });
-  console.log(postData)
-  const thePost = postData.get({ plain: true });
-  res.render("post", { post: thePost, userId: userId });
+
+  const postData = await Post.findByPk(req.params.id, {raw: true})
+
+  res.render('post', postData)
+  // res.render(postData)
+
+
+
+
+
 });
 
 // user dashboard, restrict withAuth()
