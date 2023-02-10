@@ -24,12 +24,12 @@ const sess = {
     db: sequelize,
   }),
 };
-app.use((req, res, next) => {
-  if (req.session && req.session.userId) {
-    res.locals.sessionUserId = req.session.userId;
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.session && req.session.userId) {
+//     res.locals.sessionUserId = req.session.userId;
+//   }
+//   next();
+// });
 
 app.use(session(sess));
 
@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () =>
     console.log(
       `\nServer running on port ${PORT}. Visit http://localhost:${PORT} and create an account!`

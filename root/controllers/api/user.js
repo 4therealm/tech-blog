@@ -13,6 +13,7 @@ router.post("/register", async (req, res) => {
       req.session.loggedIn = true;
 
       res.status(200).json(dbUserData);
+
     });
   } catch (err) {
     console.log(err);
@@ -55,9 +56,10 @@ console.log(validPassword)
       res
         .status(200)
         .json({ user: dbUserData, message: "You are now logged in!" });
+        
     });
   } catch (err) {
-    console.log(err);
+
     res.status(500).json({message: err});
   }
 });
