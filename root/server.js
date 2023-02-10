@@ -24,6 +24,12 @@ const sess = {
     db: sequelize,
   }),
 };
+app.use((req, res, next) => {
+  if (req.session && req.session.userId) {
+    res.locals.sessionUserId = req.session.userId;
+  }
+  next();
+});
 
 app.use(session(sess));
 

@@ -3,9 +3,10 @@ const {Error}=require("sequelize")
 const sequelize = require("../config/connection");
 const Post = require("../models/Post");
 const User = require("../models/User");
-const PostComment = require("../models/PostComment");
 const Comment = require("../models/Comments");
 const withAuth = require('../utils/auth')
+
+
 router.get("/", async (req, res) => {
   const postData = await Post.findAll().catch((err) => {
     res.json(err);
@@ -77,7 +78,8 @@ router.get("/login", (req, res) => {
 //   const thePost = postData.get({plain: true});
 //   res.render('post', { post: thePost });
 // });
-router.get("/post/:id", async (req, res) => {
+router.get("/post/:id", withAuth, async (req, res) => {
+  const userId = req.session.userId;
   const postData = await Post.findByPk(req.params.id, {
     include: [
       {
@@ -96,7 +98,7 @@ router.get("/post/:id", async (req, res) => {
 ]
   })
     const thePost = postData.get({plain: true});
-  res.render('post',{post: thePost})
+  res.render('post',{post: thePost, userId: userId })
 });
 
 
@@ -107,6 +109,27 @@ router.get("/logout", (req, res) => {
     return;
   }
   res.render("home");
+});
+
+router.get("/user/:userId", withAuth, async (req, res) => {
+  const userId = req.params.userId;
+  const postData = await Post.findAll({
+    where: {
+      user_id: userId
+    },
+    include: [{
+      model: User,
+      as: 'user'
+    }]
+  }).catch((err) => {
+    res.json({message: err});
+  });
+  const posts = postData.map((post) => post.get({ plain: true }));
+  res.render("dashboard", {
+    posts,
+    loggedIn: req.session.loggedIn,
+    userId: req.session.userid
+  });
 });
 
 module.exports = router;

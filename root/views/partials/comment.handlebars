@@ -10,6 +10,6 @@
       <button type='submit' value='Submit'>
         Submit
       </button>
-       <input type="hidden" value="{{this.user.id}}" id="userId">
+       <input type="hidden" value="{{req.session.UserId}}" id="userId">
        <input type="hidden" value="{{this.post.id}}" id="postId">
     </form>
