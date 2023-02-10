@@ -18,12 +18,12 @@ const seed = async () => {
   const post1 = await Post.create({
     title: 'How to Make a Website',
     content: 'This is a guide to making a simple website',
-    user_id: user1.id,
+    user_id: 1,
   });
   const post2 = await Post.create({
     title: 'The Benefits of Meditation',
     content: 'This is an article about the benefits of meditation',
-    user_id: user2.id,
+    user_id: 2,
   });
 
   // Create comments

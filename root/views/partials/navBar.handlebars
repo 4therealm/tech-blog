@@ -9,25 +9,25 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        {{#if loggedIn}}
+
           <li class="nav-item">
             <a class="nav-link" href="/user/{{userId}}">Dashboard</a>
           </li>
-        {{/if}}
+ 
       </ul>
-      {{#if loggedIn}}
+ 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" id="logoutbtn" href="/logout">Logout</a>
           </li>
         </ul>
-      {{else}}
+   
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" id="loginbtn" href="/login">Login</a>
           </li>
         </ul>
-      {{/if}}
+  
     </div>
   </div>
 </nav>

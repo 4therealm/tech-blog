@@ -13,7 +13,7 @@ const commentCreator = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace(`/post/${post_id}`);
+      document.location.replace('/');
     } else {
       alert('you suck');
     }
@@ -23,18 +23,18 @@ const postCreator = async (event) => {
   event.preventDefault();
   console.log('clicked')
 
-  const user_id = document.querySelector('#user_id')
-  const title = document.querySelector('#title')
-  const content = document.querySelector('#content')
-  if (user_id && title && content) {
-    const response = await fetch('/api/post', {
+  const user_id = document.querySelector('#user_id').value
+  const title = document.querySelector('#title').value
+  const content = document.querySelector('#content').value
+  if (title && content) {
+    const response = await fetch('/api/post/', {
       method: 'POST',
-      body: JSON.stringify({ title: title, user_id: user_id, content: content }),
+      body: JSON.stringify({ title: title, content: content }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace(`/user/${user_id}`);
+      document.location.replace('/');
     } else {
       alert('you suck');
     }
@@ -46,6 +46,9 @@ const postCreator = async (event) => {
 
 
 
+// document
+//   .querySelector('.commentForm')
+//   .addEventListener('submit', commentCreator);
 document
-  .querySelector('.commentForm')
-  .addEventListener('submit', commentCreator);
+  .querySelector('.postForm')
+  .addEventListener('submit', postCreator);

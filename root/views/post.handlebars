@@ -1,5 +1,5 @@
 {{> navBar}}
-{{!-- <div class="post">
+<div class="post">
   <h3>{{post.title}}</h3>
   <p>{{post.content}}</p>
   <p>{{format_date post.createdAt}}  {{format_time post.createdAt}}</p>
@@ -10,11 +10,12 @@
       <p>{{user.username}}</p>
     </div>
   {{/each}}
-</div> --}}
+</div>
 <div class="post">
   <h3>{{post.title}}</h3>
   <p>{{post.content}}</p>
   <h4>Add a Comment:</h4>
+
  <form class="commentForm">
   <input type="hidden" id="user_id" value="1">
   <input type="hidden" id="post_id" value="{{post.id}}">
@@ -29,3 +30,4 @@
     </div>
   {{/each}}
 </div>
+<script src="./post.js"></script>

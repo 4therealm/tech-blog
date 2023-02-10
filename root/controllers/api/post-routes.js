@@ -1,14 +1,16 @@
 const router = require("express").Router();
 const Post = require("../../models/Post");
 const Comments = require("../../models/Comments");
+const User = require('../../models/User')
 const withAuth = require("../../utils/auth");
 
 // route to create/add a post using async/await
 router.post("/", async (req, res) => {
-  const {title, user_id, content} = req.body
+  console.log(`session user id${req.session.userId}`)
+  const {title, content} = req.body
   try {
     const newPost = await Post.create({
-      title, user_id, content
+      title:title, user_id: req.session.userId, content:content
     });
     // if the post is successfully created, the new response will be returned as json
     res.status(200).json(newPost);
@@ -18,6 +20,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/newcomment", async (req, res) => {
+  console.log(`session user id ${req.session.userId}`)
   try {
     const { post_id, user_id, comment_text } = req.body;
 

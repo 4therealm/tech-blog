@@ -11,9 +11,8 @@ router.post("/register", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.userId = dbUserData.id
       res.status(200).json(dbUserData);
-
     });
   } catch (err) {
     console.log(err);
@@ -31,10 +30,8 @@ router.post("/login", async (req, res) => {
     });
     console.log(dbUserData);
     if (!dbUserData) {
-      console.log(dbUserData);
-      res
-        .status(400)
-        .json({ message: 'oh dear something happened'});
+      console.log(`session user id${req.session.userId}`)
+      res.status(400).json({ message: 'oh dear something happened'});
       return;
     }
     console.log(dbUserData.password);
@@ -42,24 +39,18 @@ router.post("/login", async (req, res) => {
     const validPassword = await dbUserData.checkPassword(req.body.password);
 console.log(validPassword)
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect password. Please try again!" });
+      res.status(400).json({ message: "Incorrect password. Please try again!" });
       return;
     }
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.userId = dbUserData.id
       req.session.cookie;
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+      res.status(200).json({ user: req.session});
         
     });
   } catch (err) {
-
     res.status(500).json({message: err});
   }
 });
