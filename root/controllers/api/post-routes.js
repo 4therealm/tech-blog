@@ -26,19 +26,18 @@ router.post('/', async (req, res) => {
 
 //   res.redirect(`/post/${req.params.id}`);
 // });
-router.post('/posts/:postId/comments', async (req, res) => {
+router.post('/newcomment', async (req, res) => {
+
   try {
-    const { comment_text } = req.body;
-    const { postId } = req.params;
-    const userId = req.session.userId;
+    const { post_id, user_id, comment_text } = req.body;
+ 
 
     const comment = await Comments.create({
-      user_id: userId,
-      post_id: postId,
-      comment_text
+      user_id: user_id,
+      post_id: post_id,
+      comment_text: comment_text
     });
-
-    return res.redirect(`/posts/${postId}`);
+    res.status(200).send({message: comment})
   } catch (error) {
     return res.status(500).send({ message: 'Error creating comment' });
   }

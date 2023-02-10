@@ -78,7 +78,7 @@ router.get("/login", (req, res) => {
 //   const thePost = postData.get({plain: true});
 //   res.render('post', { post: thePost });
 // });
-router.get("/post/:id", withAuth, async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   const userId = req.session.userId;
   const postData = await Post.findByPk(req.params.id, {
     include: [
@@ -111,7 +111,7 @@ router.get("/logout", (req, res) => {
   res.render("home");
 });
 
-router.get("/user/:userId", withAuth, async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
   const userId = req.params.userId;
   const postData = await Post.findAll({
     where: {
