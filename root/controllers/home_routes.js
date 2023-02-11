@@ -26,10 +26,9 @@ router.get("/logout", (req, res) => {
   res.render("home");
 });
 
-
 //get all posts, main page
 router.get("/", async (req, res) => {
-  console.log(req.session.userId)
+  console.log(req.session.userId);
   //i think this is where i am getting my session user id
   const postData = await Post.findAll().catch((err) => {
     res.json(err);
@@ -38,33 +37,44 @@ router.get("/", async (req, res) => {
   res.render("home", {
     posts,
     loggedIn: req.session.loggedIn,
-
   });
 });
 
 
+router.get('/post/:id', async (req, res) => {
+  try {
+  const post = await Post.findByPk(req.params.id, {
+  include: [
+  { model: User, as: 'user' },
+  { model: Comment, as: 'comments' },
+  ],
+  });
+  
+
+  
+  const plainPost = post.get({ plain: true });
+  res.render('post', { post: plainPost, user_id: req.session.userId });
+  
+  } catch (err) {
+  res.status(500).json({ message: 'Error retrieving post information' });
+  }
+  });
 
 //get clicked on post, loads post and comments with post
 //the postData is reading null,
-router.get("/post/:id", async (req, res) => {
-  const userId = req.session.userId;
+// router.get("/post/:id", async (req, res) => {
+//   const userId = req.session.userId;
+//   const postData = await Post.findByPk(req.params.id, { raw: true });
 
-  const postData = await Post.findByPk(req.params.id, {raw: true})
-
-  res.render('post', postData)
-  // res.render(postData)
-
-
-
-
-
-});
+//   res.render("post", postData);
+//   // res.render(postData)
+// });
 
 // user dashboard, restrict withAuth()
 //works when typed into address bar, but not when nav link is clicked.
 //should show the users posts, and have a form to write a new post
 router.get("/user/:userId", async (req, res) => {
-  console.log(req.session.userId)
+  console.log(req.session.userId);
   const userId = req.params.userId;
   const postData = await Post.findAll({
     where: {
@@ -85,7 +95,45 @@ router.get("/user/:userId", async (req, res) => {
     loggedIn: req.session.loggedIn,
     userId: req.session.userId,
   });
-  console.log(req.session.userId)
+  console.log(req.session.userId);
 });
+
+// const individualPostData = await Post.findOne({
+//   where: {
+//     id: req.params.id,
+//   },
+
+//   attributes: ["id", "post_date", "post_title", "post_content"],
+
+//   include: [
+//     {
+//       model: Comment,
+
+//       attributes: [
+//         "id",
+
+//         "user_id",
+
+//         "post_id",
+
+//         "created_at",
+
+//         "comment_content",
+//       ],
+
+//       include: {
+//         model: User,
+
+//         attributes: ["username"],
+//       },
+//     },
+
+//     {
+//       model: User,
+
+//       attributes: ["username"],
+//     },
+//   ],
+// });
 
 module.exports = router;

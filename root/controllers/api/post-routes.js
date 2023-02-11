@@ -4,6 +4,8 @@ const Comments = require("../../models/Comments");
 const User = require('../../models/User')
 const withAuth = require("../../utils/auth");
 
+//const {models here} = require('../../models)
+
 // route to create/add a post using async/await
 router.post("/", async (req, res) => {
   console.log(`session user id${req.session.userId}`)
