@@ -1,62 +1,70 @@
-const commentCreator = async (event) => {
-  event.preventDefault();
-  console.log('clicked')
 
-  const user_id = document.querySelector('#user_id').value.trim()
-  const post_id = document.querySelector('#post_id').value.trim()
-  const comment_text = document.querySelector('#comment_text').value.trim()
-
-  console.log(user_id)
-  console.log(post_id)
-  console.log(comment_text)
-  if (user_id && post_id && comment_text) {
-    const response = await fetch('/api/post/newcomment', {
-      method: 'POST',
-      body: JSON.stringify({ post_id,user_id, comment_text }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.reload(true)
-    } else {
-      alert('you suck');
-    }
-  }
-};
 const postCreator = async (event) => {
   event.preventDefault();
   console.log('clicked')
-
+  
   const user_id = document.getElementById("user_id").dataset.userid;
   const title = document.querySelector('#title').value
   const content = document.querySelector('#content').value
-  // const user_id = window.location.toString().split('/')[
-  //   window.location.toString().split('/').length - 1
-// ];
-console.log('thissssssssssssssss' + user_id)
+  
   if (title && content) {
-    const response = await fetch('/api/post/', {
-      method: 'POST',
-      body: JSON.stringify({ title: title, content: content, user_id: user_id }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const response = await fetch('/api/post/', {
+  method: 'POST',
+  body: JSON.stringify({ title: title, content: content, user_id: user_id }),
+  headers: { 'Content-Type': 'application/json' },
+  });
+  
 
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('you suck');
-    }
+  
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert('An error occurred while creating the post');
   }
-};
-
-
-
-
-
-
-document
-  .querySelector('.commentForm')
-  .addEventListener('submit', commentCreator);
-document
+  
+  }
+  };
+  
+  document
   .querySelector('.postForm')
   .addEventListener('submit', postCreator);
+
+
+  // const form = document.querySelector('.comment-form');
+
+  // form.addEventListener('submit', async (e) => {
+  //   e.preventDefault();
+  
+  //   const commentContent = document.querySelector('#commentContent').value;
+  //   const userId = document.querySelector('#userId').value;
+  //   const postId = document.querySelector('#postId').value;
+  
+  //   const response = await fetch('/newcomment', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       post_id: postId,
+  //       user_id: userId,
+  //       comment_text: commentContent
+  //     })
+  //   });
+  
+  //   const result = await response.json();
+  
+  //   if (response.status === 200) {
+  //     console.log(result.message);
+  //   } else {
+  //     console.error(result.message);
+  //   }
+  // });
+  
+
+
+// document
+//   .querySelector('.commentForm')
+//   .addEventListener('submit', commentCreator);
+// document
+//   .querySelector('.postForm')
+//   .addEventListener('submit', postCreator);

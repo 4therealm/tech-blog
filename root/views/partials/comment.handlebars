@@ -1,4 +1,4 @@
- <form class='comment-form'>
+ {{!-- <form class='comment-form'>
       <label for='comment'>
         Add Comment:
       </label>
@@ -12,4 +12,19 @@
       </button>
        <input type="hidden" value="{{req.session.UserId}}" id="userId">
        <input type="hidden" value="{{post.id}}" id="postId">
-    </form>
+    </form> --}}
+    <form class='comment-form'>
+  <label for='comment'>
+    Add Comment:
+  </label>
+  <br />
+  <textarea id='commentContent' name='comment' rows='2' cols='30'>
+  </textarea>
+  <br />
+  <br />
+  <button type='submit' value='Submit'>
+    Submit
+  </button>
+  <input type="hidden" id="userId" value="{{req.session.UserId}}">
+  <input type="hidden" id="postId" value="{{post.id}}">
+</form>
