@@ -37,11 +37,13 @@ router.get("/", async (req, res) => {
   res.render("home", {
     posts,
     loggedIn: req.session.loggedIn,
+    username: req.session.username,
+    userId: req.session.userId
   });
 });
 
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
   const post = await Post.findByPk(req.params.id, {
   include: [
@@ -49,11 +51,9 @@ router.get('/post/:id', async (req, res) => {
   { model: Comment, as: 'comments' },
   ],
   });
-  
-
-  
+    
   const plainPost = post.get({ plain: true });
-  res.render('post', { post: plainPost, user_id: req.session.userId });
+  res.render('post', { post: plainPost, user_id: req.session.userId, loggedIn: req.session.loggedIn, });
   
   } catch (err) {
   res.status(500).json({ message: 'Error retrieving post information' });
@@ -94,46 +94,11 @@ router.get("/user/:userId", async (req, res) => {
     posts,
     loggedIn: req.session.loggedIn,
     userId: req.session.userId,
+    username: req.session.username
   });
   console.log(req.session.userId);
 });
 
-// const individualPostData = await Post.findOne({
-//   where: {
-//     id: req.params.id,
-//   },
 
-//   attributes: ["id", "post_date", "post_title", "post_content"],
-
-//   include: [
-//     {
-//       model: Comment,
-
-//       attributes: [
-//         "id",
-
-//         "user_id",
-
-//         "post_id",
-
-//         "created_at",
-
-//         "comment_content",
-//       ],
-
-//       include: {
-//         model: User,
-
-//         attributes: ["username"],
-//       },
-//     },
-
-//     {
-//       model: User,
-
-//       attributes: ["username"],
-//     },
-//   ],
-// });
 
 module.exports = router;

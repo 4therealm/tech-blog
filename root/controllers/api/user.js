@@ -45,7 +45,8 @@ console.log(validPassword)
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.userId = dbUserData.id
+      req.session.userId = dbUserData.id,
+      req.session.username = req.body.username
       req.session.cookie;
       res.status(200).json({ user: req.session});
         
