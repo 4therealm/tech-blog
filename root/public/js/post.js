@@ -27,12 +27,13 @@ const postCreator = async (event) => {
   event.preventDefault();
   console.log('clicked')
 
-  // const user_id = document.querySelector('#user_id').value
+  const user_id = document.getElementById("user_id").dataset.userid;
   const title = document.querySelector('#title').value
   const content = document.querySelector('#content').value
-  const user_id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-];
+  // const user_id = window.location.toString().split('/')[
+  //   window.location.toString().split('/').length - 1
+// ];
+console.log('thissssssssssssssss' + user_id)
   if (title && content) {
     const response = await fetch('/api/post/', {
       method: 'POST',
