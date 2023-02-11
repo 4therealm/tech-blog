@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "description": "",
   "private": true,
-  "main": "server.js",
+  "main": "root/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
 
   },
-  "author": "Eric Ferraiuolo <eferraiuolo@gmail.com>",
+  "author": "max",
   "license": "BSD",
   "dependencies": {
 
