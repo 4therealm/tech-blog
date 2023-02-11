@@ -6,7 +6,7 @@
 //   }
 // }
 function withAuth(req, res, next) {
-  if (res.locals.sessionUserId) {
+  if (req.session.userId) {
     return next();
   } else {
     return res.redirect('/login');
