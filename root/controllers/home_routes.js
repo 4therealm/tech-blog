@@ -60,18 +60,7 @@ router.get('/post/:id',  async (req, res) => {
   }
   });
 
-//get clicked on post, loads post and comments with post
-//the postData is reading null,
-// router.get("/post/:id", async (req, res) => {
-//   const userId = req.session.userId;
-//   const postData = await Post.findByPk(req.params.id, { raw: true });
 
-//   res.render("post", postData);
-//   // res.render(postData)
-// });
-
-// user dashboard, restrict withAuth()
-//works when typed into address bar, but not when nav link is clicked.
 //should show the users posts, and have a form to write a new post
 router.get("/user/:userId", async (req, res) => {
   console.log(req.session.userId);
