@@ -1,5 +1,8 @@
 # tech-blog
 
+heroku: https://tech-blog-hw.herokuapp.com/
+repo: https://github.com/4therealm/tech-blog
+
 User Story
 AS A developer who writes about tech
 I WANT a CMS-style blog site
@@ -39,43 +42,3 @@ WHEN I click on the logout option in the navigation
 THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments
-Mock-Up
-The following animation demonstrates the application functionality:
-
-Animation cycles through signing into the app, clicking on buttons, and updating blog posts.
-
-Getting Started
-Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the express-handlebars Links to an external site.package to use Handlebars.js for your Views, use the MySQL2 Links to an external site.and Sequelize Links to an external site.packages to connect to a MySQL database for your Models, and create an Express.js API for your Controllers.
-
-You’ll also need the dotenv package Links to an external site.to use environment variables, the bcrypt package Links to an external site.to hash passwords, and the express-session Links to an external site.and connect-session-sequelize Links to an external site.packages to add authentication.
-
-NOTE
-The express-session Links to an external site.package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior and you do not have to do anything to your application other than implement the npm package.
-
-Grading Requirements
-NOTE
-If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
-
-A repository that has no code
-
-A repository that includes a unique name but nothing else
-
-A repository that includes only a README file but nothing else
-
-A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-Technical Acceptance Criteria: 40%
-Satisfies all of the preceding acceptance criteria plus the following:
-
-Application’s folder structure follows the Model-View-Controller paradigm.
-
-Uses the express-handlebars Links to an external site.package to use Handlebars.js for your Views.
-
-Application must be deployed to Heroku.
-
-
-
-
-
