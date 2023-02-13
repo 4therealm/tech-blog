@@ -7,7 +7,7 @@ const form = document.querySelector('.comment-form');
     const userId = document.querySelector('#user_id')
     const postId = document.querySelector('#postId').value;
   
-    const response = await fetch('http://localhost:3001/api/post/newcomment', {
+    const response = await fetch("/api/post/newcomment", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
